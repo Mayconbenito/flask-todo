@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Todo App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Todo Web App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="container-fluid">
+      <div class="">
+        <div class="row">
+          <div class="col-sm">
+            <h1>List of todos:</h1>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Todo name</th>
+                  <th scope="col">Todo description</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for todo in todos %}
+                  <tr>
+                    <th scope="row">{{ todo[0] }}</th>
+                    <td>{{ todo[1] }}</td>
+                    <td>{{ todo[2] }}</td>
+                    <td><a href="/to-do/delete/{{ todo[0] }}"class="btn btn-danger">Delete</a></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          </div>
+
+          <div class="col-sm">
+            <h1>Create todo:</h1>
+            <form method="POST" action="/to-do/create">
+              <div class="form-group">
+                <input type="text" class="form-control" name="name" placeholder="Todo name" required>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="description" placeholder="Todo description" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Create todo</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
